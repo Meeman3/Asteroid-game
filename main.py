@@ -1,5 +1,6 @@
 import pygame
 from constants import *
+from player import Player
 
 def main():
     #initialize pygame
@@ -19,6 +20,9 @@ def main():
     #creates screen in pygame
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    #spawns player in middle of screen when game started
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT /2,)
+
     #infinite loop
     while True:
         
@@ -29,6 +33,9 @@ def main():
 
         #every loop fills screen in pygame with black colour
         screen.fill("black")
+
+        #draws player every frame, after its filled but before its refreshed
+        player.draw(screen)
 
         #refreshes screen
         pygame.display.flip()
