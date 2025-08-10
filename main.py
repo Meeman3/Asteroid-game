@@ -61,15 +61,14 @@ def main():
 
         #exit game if asteroid collides with player
         for asteroid in asteroids:
-            if asteroid.collision(player) == True:
+            if asteroid.collision(player):
                 sys.exit("Game over!")
 
         #destoy asteroid if bullet hits
-        for bullet in shots:
-            for asteroid in asteroids:
-                if bullet.collision(asteroid) == True:
+            for bullet in shots:
+                if bullet.collision(asteroid):
                     bullet.kill()
-                    asteroid.kill()
+                    asteroid.split()
 
         #draws player every frame, after its filled but before its refreshed
         for object in drawable:
