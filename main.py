@@ -1,8 +1,10 @@
+import sys
 import pygame
 from constants import *
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+
 
 def main():
     #initialize pygame
@@ -33,7 +35,7 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     #spawns player in middle of screen when game started
-    Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT /2,)
+    player =Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT /2,)
 
     asteroid_field = AsteroidField()
 
@@ -50,6 +52,11 @@ def main():
 
         #updates player position before rendering
         updatable.update(dt)
+
+        #exit game if asteroid collides with player
+        for asteroid in asteroids:
+            if asteroid.collision(player) ==True:
+                sys.exit("Game over!")
 
         #draws player every frame, after its filled but before its refreshed
         for object in drawable:
