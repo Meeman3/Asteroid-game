@@ -2,23 +2,40 @@ import pygame
 from constants import *
 
 def main():
-    pygame.init()
+    #initialize pygame
+    pygame.init() 
 
+    #create Clock object that tracks time
+    clock = pygame.time.Clock()
 
+    #variable for change in time
+    dt = 0
+
+    #starting message
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
+    #creates screen in pygame
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    #infinite loop
     while True:
         
+        #allows use of X button on window to close screen
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
 
+        #every loop fills screen in pygame with black colour
         screen.fill("black")
+
+        #refreshes screen
         pygame.display.flip()
+
+        #updates clock every loop, sets to 60fps
+        #returns amount of time since last called, converted to seconds, stored in dt
+        dt = (clock.tick(60) /1000)
         
         
 
