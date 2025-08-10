@@ -50,11 +50,14 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        #every loop fills screen in pygame with black colour
-        screen.fill("black")
+
 
         #updates player position before rendering
         updatable.update(dt)
+        
+        #every loop fills screen in pygame with black colour
+        screen.fill("black")
+
 
         #exit game if asteroid collides with player
         for asteroid in asteroids:
