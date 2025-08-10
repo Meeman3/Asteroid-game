@@ -9,6 +9,13 @@ def main():
     #create Clock object that tracks time
     clock = pygame.time.Clock()
 
+    #groups of objects
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    #adds Player to bth groups with class variable
+    Player.containers = (updatable, drawable)
+
     #variable for change in time
     dt = 0
 
@@ -21,7 +28,7 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     #spawns player in middle of screen when game started
-    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT /2,)
+    Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT /2,)
 
     #infinite loop
     while True:
@@ -35,10 +42,11 @@ def main():
         screen.fill("black")
 
         #updates player position before rendering
-        player.update(dt)
+        updatable.update(dt)
 
         #draws player every frame, after its filled but before its refreshed
-        player.draw(screen)
+        for object in drawable:
+            object.draw(screen)
 
 
         #refreshes screen
