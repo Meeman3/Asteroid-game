@@ -34,8 +34,12 @@ def main():
         #every loop fills screen in pygame with black colour
         screen.fill("black")
 
+        #updates player position before rendering
+        player.update(dt)
+
         #draws player every frame, after its filled but before its refreshed
         player.draw(screen)
+
 
         #refreshes screen
         pygame.display.flip()
