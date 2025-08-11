@@ -88,6 +88,7 @@ def main():
         screen.blit(score_text, (10, 10)), 100
 
         if Alive != True:
+            player.kill()
             screen.fill("black")
             score_text = font.render(f'Score: {score}', True, (255, 255, 255))
             score_text_scaled = pygame.transform.scale_by(score_text, 3)
