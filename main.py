@@ -46,6 +46,8 @@ def main():
 
     score = 0
 
+    Alive = True
+
     #infinite loop
     while True:
         
@@ -66,7 +68,8 @@ def main():
         #exit game if asteroid collides with player
         for asteroid in asteroids:
             if asteroid.collision(player):
-                sys.exit("Game over!")
+                Alive = False
+                
 
         #destoy asteroid if bullet hits
             for bullet in shots:
@@ -76,12 +79,20 @@ def main():
                     score +=100
 
         #draws player every frame, after its filled but before its refreshed
+
         for object in drawable:
             object.draw(screen)
 
-
+        #renders score in top right of screen
         score_text = font.render(f'Score: {score}', True, (255, 255, 255))
-        screen.blit(score_text, (10, 10))
+        screen.blit(score_text, (10, 10)), 100
+
+        if Alive != True:
+            screen.fill("black")
+            score_text = font.render(f'Score: {score}', True, (255, 255, 255))
+            score_text_scaled = pygame.transform.scale_by(score_text, 3)
+            screen.blit(score_text_scaled, (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+
 
 
         #refreshes screen
