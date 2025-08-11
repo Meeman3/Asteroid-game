@@ -10,6 +10,8 @@ from shots import Shot
 def main():
     #initialize pygame
     pygame.init() 
+    
+    font = pygame.font.Font()
 
     #create Clock object that tracks time
     clock = pygame.time.Clock()
@@ -42,6 +44,8 @@ def main():
 
     asteroid_field = AsteroidField()
 
+    score = 0
+
     #infinite loop
     while True:
         
@@ -69,10 +73,15 @@ def main():
                 if bullet.collision(asteroid):
                     bullet.kill()
                     asteroid.split()
+                    score +=100
 
         #draws player every frame, after its filled but before its refreshed
         for object in drawable:
             object.draw(screen)
+
+
+        score_text = font.render(f'Score: {score}', True, (255, 255, 255))
+        screen.blit(score_text, (10, 10))
 
 
         #refreshes screen
